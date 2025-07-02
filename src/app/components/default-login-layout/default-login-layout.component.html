@@ -1,0 +1,22 @@
+<main>
+  <section class="form-section">
+
+    <h2>{{title}}</h2>
+    <ng-content></ng-content>
+    <div class="btn-wrapper">
+      <button class="primary-button" (click)="submit()" [disabled]="primaryBtnDisabled">{{primaryBtnText}}</button>
+
+    </div>
+    <div class="divider">
+      <div></div>
+      <span>ou</span>
+      <div></div>
+    </div>
+    <div class="btn-wrapper">
+      <button class="secondary-button" (click)="navigate('register')">{{secondaryBtnText}}</button>
+    </div>
+  </section>
+  <section class="main-section">
+    <img src="assets/svg/logo.svg.png" alt="Logo do Itaú" />
+  </section>
+</main>
