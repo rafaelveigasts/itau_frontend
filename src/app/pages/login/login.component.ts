@@ -44,7 +44,7 @@ export class LoginComponent {
       .login(
         this.loginForm.value.email,
         this.loginForm.value.password,
-        'clientCredentials'
+        'credencialXPTO'
       )
       .subscribe({
         next: (response) => {

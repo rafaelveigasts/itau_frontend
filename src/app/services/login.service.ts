@@ -7,15 +7,16 @@ import { tap } from 'rxjs';
   providedIn: 'root',
 })
 export class LoginService {
+  apiUrl = 'http://localhost:8080/auth/login';
   constructor(private httpClient: HttpClient) {}
 
   login(email: string, password: string, clientCredentials: string) {
     const headers = new HttpHeaders({
-      clientCredentials: clientCredentials,
+      'X-Client-Credentials': clientCredentials,
     });
 
     return this.httpClient
-      .post<LoginResponse>('/api/login', { email, password }, { headers })
+      .post<LoginResponse>(this.apiUrl, { email, password }, { headers })
       .pipe(
         tap((value) => {
           sessionStorage.setItem('token', value.token);
@@ -23,16 +24,17 @@ export class LoginService {
         })
       );
   }
-
-  register(email: string, password: string, clientCredentials: string) {
-    const headers = new HttpHeaders({
-      clientCredentials: clientCredentials,
-    });
-
-    return this.httpClient.post(
-      '/api/register',
-      { email, password },
-      { headers }
-    );
-  }
 }
+
+// register(email: string, password: string, clientCredentials: string) {
+//   const headers = new HttpHeaders({
+//     clientCredentials: clientCredentials,
+//   });
+
+//   return this.httpClient.post(
+//     '/api/register',
+//     { email, password },
+//     { headers }
+//   );
+// }
+// }
